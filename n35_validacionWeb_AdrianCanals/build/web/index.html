@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Formulario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style type="text/css">
+			div.error {
+				color: red;
+			}
+		</style>
+        <script type="text/javascript">
+			function comprobar() {
+				var msg1 = "";
+				var msg2 = "";
+				var num1 = document.getElementById("num1").value;
+				var num2 = document.getElementById("num2").value;
+				var num3 = document.getElementById("num3").value;
+
+				var div1 = document.getElementById("error1");
+				var div2 = document.getElementById("error2");
+
+				if (num1 == 0) {
+					msg1 = "El coeficiente1 no puede ser 0";
+					div1.innerHTML = msg1;
+				} else {
+					msg1 = "";
+					div1.innerHTML = "";
+				}
+				if (num2 != 0 && num3 != 0) {
+					msg2 = "Almenos uno de los coeficientes 2 o 3 han de ser 0.";
+					div2.innerHTML = msg2;
+				}else {
+					msg2 = "";
+					div2.innerHTML = "";
+				}
+
+				if (msg1 != "" || msg2 != "") {
+					return false;
+				} else {
+					return true;
+				}
+				
+			}
+			function iniciar() {
+				document.getElementById("form").onsubmit = function() {
+					return comprobar();
+				}
+			}
+			window.onload = iniciar;
+		</script>
+    </head>
+    <body>
+        <div>
+            <form id="form" action="EquSegonController" method="POST">
+                <label>Coeficiente1:</label>
+                <input id="num1" type="number" name="coeficiente1" required><br>
+                <div id="error1" class="error"></div>
+                
+                <label>Coeficiente2:</label>
+                <input id="num2" type="number" name="coeficiente2" required><br>
+                
+                <label>Coeficiente3</label>
+                <input id="num3" type="number" name="coeficiente3" required><br>
+                <div id="error2" class="error"></div>
+                
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </body>
+</html>
